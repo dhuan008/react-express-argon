@@ -58,7 +58,7 @@ app.use(cors());
 
 // Morgan and bodyParser
 app.use(morgan("combined"));
-app.use(bodyParser.json({ type: ["json"] }));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === "production") {
