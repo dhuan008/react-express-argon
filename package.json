@@ -1,0 +1,67 @@
+{
+  "name": "express-react-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "prettier",
+      "plugin:security/recommended"
+    ],
+    "plugins": [
+      "prettier",
+      "security"
+    ],
+    "env": {
+      "es6": true,
+      "browser": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error"
+      ],
+      "linebreak-style": 0,
+      "no-underscore-dangle": [
+        2,
+        {
+          "allow": [
+            "_id"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "@hapi/boom": "^7.4.10",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "helmet": "^3.21.1",
+    "heroku-ssl-redirect": "0.0.4",
+    "mongoose": "^5.7.1",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.2",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-security": "^1.4.0",
+    "prettier": "^1.18.2"
+  }
+}
