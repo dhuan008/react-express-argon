@@ -12,13 +12,14 @@ import {
   CardHeader,
   Container,
   Row,
-  Col
+  Col,
+  Alert
 } from "reactstrap";
 import LandingNavbar from "../../components/organisms/LandingNavbar/LandingNavbar.jsx";
 import CardsFooter from "../../components/organisms/CardsFooter/CardsFooter.jsx";
 import { Formik, Field } from "formik";
 
-const Register = ({ register }) => {
+const Register = ({ register, registerError, message }) => {
   return (
     <>
       <LandingNavbar />
@@ -211,6 +212,9 @@ const Register = ({ register }) => {
                               </div>
                             </Col>
                           </Row>
+                          {registerError ? (
+                            <Alert color="danger">{message}</Alert>
+                          ) : null}
                           <div className="text-center">
                             <Button
                               className="mt-4"

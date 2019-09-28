@@ -12,14 +12,8 @@ export default class App extends Component {
   state = {
     isAuth: false,
     token: null,
-    requests: [
-      {
-        signin: {
-          message: "",
-          error: false
-        }
-      }
-    ]
+    registerError: false,
+    message: ""
   };
 
   signin = (email, password) => {
@@ -29,12 +23,22 @@ export default class App extends Component {
   };
 
   register = (values, setSubmitting) => {
+    this.setState({
+      registerError: false,
+      message: ""
+    });
+
     API_register(values)
       .then(response => {
         setSubmitting(false);
       })
       .catch(error => {
         setSubmitting(false);
+
+        this.setState({
+          registerError: true,
+          message: error.response.data
+        });
       });
   };
 
@@ -50,7 +54,13 @@ export default class App extends Component {
         <Route
           path="/register"
           exact
-          render={() => <Register register={this.register} />}
+          render={() => (
+            <Register
+              register={this.register}
+              registerError={this.state.registerError}
+              message={this.state.message}
+            />
+          )}
         />
         />
       </Router>
