@@ -16,9 +16,10 @@ class Landing extends React.Component {
   }
 
   render() {
+    const { isAuth } = this.props;
     return (
       <>
-        <LandingNavbar />
+        <LandingNavbar isAuth={isAuth} />
         <main ref="main">
           <div className="position-relative">
             {/* shape Hero */}

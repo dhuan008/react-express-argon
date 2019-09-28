@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const boom = require("@hapi/boom");
 const cors = require("cors");
 
+const authRouter = require("./routes/auth/router");
+
 // Load keys based on prod or dev env
 const config = require("./config/keys");
 
@@ -42,7 +44,7 @@ app.use(helmet());
 
 // Add rate limiter for brute force attacks
 // Add trust proxy for Heroku
-app.enable("trust proxy");
+app.enable("trust proxy", 1);
 
 // limit each IP to 150 requests per MS
 const limiter = rateLimit({
@@ -60,6 +62,10 @@ app.use(cors());
 app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// ****************
+// LIST ROUTES HERE
+authRouter(app);
 
 if (process.env.NODE_ENV === "production") {
   // If request doesn't match any routes above, look for file

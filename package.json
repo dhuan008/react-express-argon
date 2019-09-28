@@ -11,9 +11,6 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "eslintConfig": {
     "extends": [
       "airbnb-base",
@@ -22,11 +19,13 @@
     ],
     "plugins": [
       "prettier",
-      "security"
+      "security",
+      "mocha"
     ],
     "env": {
       "es6": true,
-      "browser": true
+      "browser": true,
+      "mocha": true
     },
     "rules": {
       "prettier/prettier": [
@@ -43,6 +42,9 @@
       ]
     }
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@hapi/boom": "^7.4.10",
     "body-parser": "^1.19.0",
@@ -56,12 +58,18 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.2",
+    "prettier": "^1.18.2",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.3.0",
+    "eslint-config-react-app": "^5.0.2",
+    "eslint-plugin-flowtype": "^4.3.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
     "eslint-plugin-security": "^1.4.0",
-    "prettier": "^1.18.2"
+    "eslint-plugin-mocha": "^6.1.1"
   }
 }
