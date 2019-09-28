@@ -15,6 +15,7 @@ import {
   Col,
   UncontrolledTooltip
 } from "reactstrap";
+import history from "../../../utils/history";
 
 class LandingNavbar extends React.Component {
   componentDidMount() {
@@ -24,8 +25,6 @@ class LandingNavbar extends React.Component {
   }
 
   render() {
-    const { isAuth } = this.props;
-    
     return (
       <>
         <header className="header-global">
@@ -78,6 +77,9 @@ class LandingNavbar extends React.Component {
                       className="btn-neutral btn-icon"
                       color="default"
                       target="_blank"
+                      onClick={() => {
+                        history.push("/dashboard");
+                      }}
                     >
                       <span className="btn-inner--icon">
                         <i className="fa fa-sign-in mr-2" />

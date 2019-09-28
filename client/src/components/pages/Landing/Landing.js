@@ -1,10 +1,9 @@
 import React from "react";
-
-// reactstrap components
 import { Badge, Button, Card, CardBody, Container, Row, Col } from "reactstrap";
 
 import LandingNavbar from "../../organisms/LandingNavbar/LandingNavbar.jsx";
 import CardsFooter from "../../organisms/CardsFooter/CardsFooter.jsx";
+import history from "../../../utils/history";
 
 class Landing extends React.Component {
   state = {};
@@ -52,7 +51,9 @@ class Landing extends React.Component {
                         <Button
                           className="btn-icon mb-3 mb-sm-0"
                           color="info"
-                          href="#"
+                          onClick={() => {
+                            history.push("/register");
+                          }}
                         >
                           <span className="btn-inner--icon mr-1">
                             <i className="fa fa-code" />
