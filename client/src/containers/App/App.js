@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { Router, Route } from "react-router-dom";
 import history from "../../utils/history";
+import authClient from "../../auth/authClient";
 
 import Landing from "../../components/pages/Landing/Landing";
 import Signin from "../Signin/Signin";
 import Register from "../Register/Register";
+import Dashboard from "../Dashboard/Dashboard";
 
 import { API_signin, API_register } from "../../requests/requests";
 
 export default class App extends Component {
   state = {
-    isAuth: false,
-    token: null,
     registerError: false,
     message: ""
   };
@@ -31,13 +31,19 @@ export default class App extends Component {
     API_register(values)
       .then(response => {
         setSubmitting(false);
+
+        authClient.authenticate(response.data.token);
+
+        history.push("/dashboard");
       })
       .catch(error => {
         setSubmitting(false);
 
         this.setState({
           registerError: true,
-          message: error.response.data
+          message: error.response
+            ? error.response.data
+            : "An error has occurred"
         });
       });
   };
@@ -46,6 +52,7 @@ export default class App extends Component {
     return (
       <Router history={history}>
         <Route path="/" exact component={Landing} />
+        <Route path="/dashboard" exact component={Dashboard} />
         <Route
           path="/signin"
           exact
@@ -61,7 +68,6 @@ export default class App extends Component {
               message={this.state.message}
             />
           )}
-        />
         />
       </Router>
     );

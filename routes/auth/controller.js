@@ -1,5 +1,6 @@
 const boom = require("@hapi/boom");
 const User = require("../../models/User");
+const { genJwt } = require("../../utils/jwt");
 
 const register = (req, res, next) => {
   const { name, email, password } = req.body;
@@ -19,7 +20,7 @@ const register = (req, res, next) => {
     return user.save(error => {
       if (error) return next(boom.serverUnavailable("Error saving user."));
 
-      return res.send(user);
+      return res.json({ token: genJwt(user) });
     });
   });
 };
